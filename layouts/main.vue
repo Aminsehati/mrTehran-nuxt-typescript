@@ -6,10 +6,10 @@
     <!-- v-if="$route.fullPath !== '/'"  -->
     <Banner v-if="$route.fullPath !== '/'" />
     <Footer />
-    <!-- <Search
+    <Search
       :show="showSidebarSearch"
       @close="showSidebarSearch = !showSidebarSearch"
-    /> -->
+    />
     <!-- <Player @showList="showSidebarPlayerLists = !showSidebarPlayerLists" />
     <PlayerLists
       :show="showSidebarPlayerLists"

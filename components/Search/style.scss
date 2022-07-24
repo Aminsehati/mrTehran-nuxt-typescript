@@ -1,0 +1,17 @@
+.search-box {
+    position: fixed;
+    top: 0;
+    left: -50%;
+    width: 25%;
+    height: 100%;
+    background: rgba(44, 44, 44, 0.96) !important;
+    z-index: 99999;
+    transition: all 400ms ease-in-out;
+    &.show {
+      left: 0;
+      transition: all 400ms ease-in-out;
+    }
+    .search_text-field {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }

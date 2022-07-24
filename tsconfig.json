@@ -9,13 +9,15 @@
     "sourceMap": true,
     "strict": true,
     "noEmit": true,
+    "noEmitOnError": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "baseUrl": ".",
     "paths": {
       "~/*": ["./*"],
       "@/*": ["./*"]
     },
-    "types": ["@nuxt/types", "@nuxtjs/axios", "@types/node"]
+    "types": ["@nuxt/types", "@nuxtjs/axios", "@types/node","@nuxt/typescript-build"]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
 }

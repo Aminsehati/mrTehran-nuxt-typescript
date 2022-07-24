@@ -10,7 +10,16 @@ export default <NuxtConfig>{
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: "stylesheet",
+        href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css",
+        integrity: "sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==",
+        crossorigin: "anonymous",
+        referrerpolicy: "referrer"
+      }
+    ],
   },
   css: [
     '@/assets/css/App.scss'
@@ -18,15 +27,12 @@ export default <NuxtConfig>{
   plugins: [
     {
       src: "@/plugins/utils",
-      mode: "all"
     },
     {
       src: "@/plugins/axios-accessor",
-      mode:"serve"
     },
     {
       src: "@/plugins/axios",
-      mode:"server"
     },
   ],
   components: [
@@ -55,5 +61,12 @@ export default <NuxtConfig>{
     typeCheck: true,
     ignoreNotFoundWarnings: true,
   },
-  build: {},
+  build: {
+    babel: {
+      plugins: [
+        ["@babel/plugin-proposal-private-methods", { loose: true }],
+        ["@babel/plugin-proposal-private-property-in-object", { loose: true }],
+      ],
+    },
+  },
 }

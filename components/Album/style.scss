@@ -1,0 +1,28 @@
+.album-track {
+    .image-album-track {
+        margin-bottom: 15px;
+        img {
+            border-radius: 0.5rem;
+            transition: all 300ms ease;
+            width: 100%;
+            &:hover {
+                opacity: 0.6;
+                transition: all 300ms ease;
+            }
+        }
+    }
+    .trackName {
+        transition: all 300ms ease-in-out;
+        &:hover {
+            color: rgba(255, 255, 255, 0.5);
+            transition: all 300ms ease-in-out;
+        }
+    }
+    .artists {
+        a {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
