@@ -1,0 +1,27 @@
+.btn.btn-primary {
+    background: #eb2650;
+    display: inline-block;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 100px;
+    font-weight: 700;
+  }
+  .btn.btn-small {
+    padding: 15px 30px;
+  }
+  .btn.btn-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    min-height: 31px;
+    border-radius: 50rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding: 0.25rem 1rem;
+    transition: all 400ms ease;
+    font-size: 13px;
+    &:hover {
+      background: #fff;
+      color: #202020;
+      transition: all 400ms ease;
+    }
+  }

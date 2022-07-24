@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    font-size: 14px;
+  }
+  body {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #ffffff;
+    background: #202020;
+    font-family: "Kanit";
+    user-select: none;
+    overflow-x: hidden;
+  }
+  ul,li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .font-300 {
+    font-weight: 300;
+  }
+  .font-400 {
+    font-weight: 300;
+  }
+  .font-500 {
+    font-weight: 500;
+  }
+  .font-600 {
+    font-weight: 600;
+  }
+  .font-700 {
+    font-weight: 700;
+  }
+  .font-800 {
+    font-weight: 800;
+  }
+  img[src="unknown"]{
+    opacity: 0;
+  }
+  img[src=""]{
+    opacity: 0;
+  }
