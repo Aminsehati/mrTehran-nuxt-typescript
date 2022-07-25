@@ -61,6 +61,11 @@ export default <NuxtConfig>{
     typeCheck: true,
     ignoreNotFoundWarnings: true,
   },
+  render: {
+    bundleRenderer: {
+      runInNewContext: false,
+    },
+  },
   build: {
     babel: {
       plugins: [

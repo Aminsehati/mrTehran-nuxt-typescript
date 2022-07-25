@@ -3,7 +3,7 @@ import { Inject } from '@nuxt/types/app'
 import _ from 'lodash'
 export class UtilsPlugin {
     public $_: _.LoDashStatic = _
-
+    public baseUrl: string = "http://localhost:5000/"
 
     public countFollowers(count: number) {
         const label = count > 1000 ? "k" : "";
@@ -15,7 +15,7 @@ export class UtilsPlugin {
     }
 
     getImageUrl(url: string) {
-        return url
+        return `${this.baseUrl}public/images/${url}`
     }
 }
 

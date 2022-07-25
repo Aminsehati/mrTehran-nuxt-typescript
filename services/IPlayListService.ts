@@ -1,5 +1,6 @@
 import { PlayList } from '@/Model/playlist.model'
-export  interface IPlayListService {
-    getPlaylists(): string
+import { PlayListInput } from '@/Model/dto/playlistInput.model'
+export interface IPlayListService {
+    getPlaylists(input: PlayListInput): Promise<PlayList[]>
     getPlayList(id: string): Promise<PlayList>
 }

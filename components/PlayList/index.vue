@@ -2,7 +2,7 @@
   <div class="playlist-item">
     <nuxt-link :to="`/playlist/${playListInfo._id}`">
       <div class="image">
-        <img :src="getImageUrl(playListInfo.imgUrl)" />
+        <img :src=" $utils.getImageUrl(playListInfo.imgUrl)" />
       </div>
       <div class="content pl-15">
         <h2 class="name-playlist">
@@ -26,7 +26,7 @@ import { PlayList } from '@/Model/playlist.model'
 import './style.scss'
 @Component({})
 export default class PlayListComponent extends Vue {
-  @Prop({ type: Object }) playListInfo!: PlayList[]
+  @Prop({ type: Object }) playListInfo!: PlayList
   public getImageUrl(url: string) {
     return url
   }

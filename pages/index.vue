@@ -1,22 +1,63 @@
 <template>
   <div class="home-page">
     <Container>
-      <div class="grid xl:grid-cols-3 sm:grid-cols-2 gap-x-20 gap-y-20 mb-20">
-        <PlayList
-          v-for="item in playlistsItems"
-          :key="item._id"
-          :play-list-info="item"
-        />
+      <div class="new-albums mb-30">
+        <div class="mb-20 flex justify-between items-center">
+          <Title> New Albums</Title>
+        </div>
+        <div
+          class="
+            grid
+            gap-x-15
+            lg:grid-cols-4
+            sm:grid-cols-2
+            xs:grid-cols-2
+            grid-cols-1
+            gap-y-20
+          "
+        >
+          <Album
+            v-for="album in albumsItems"
+            :key="album._id"
+            :albumInfo="album"
+          />
+        </div>
       </div>
-      <div class="grid xl:grid-cols-3 sm:grid-cols-2 gap-x-20 gap-y-20 mb-20">
-        <Artist
-          v-for="item in artistItems"
-          :key="item._id"
-          :artist-info="item"
-        />
+      <div class="top-play-list mb-30">
+        <div class="mb-20 flex justify-between items-center">
+          <Title> Top Playlists </Title>
+          <div>
+            <nuxt-link to="/artists" class="text-white">
+              See All
+              <i class="fa-solid fa-chevron-right ml-10 text-12"></i>
+            </nuxt-link>
+          </div>
+        </div>
+        <div class="grid xl:grid-cols-3 sm:grid-cols-2 gap-x-20 gap-y-20">
+          <PlayList
+            v-for="item in playlistsItems"
+            :key="item._id"
+            :playListInfo="item"
+          />
+        </div>
       </div>
-      <div class="grid xl:grid-cols-4 sm:grid-cols-3 gap-x-20 gap-y-20 mb-20">
-        <Album v-for="item in albumsItems" :key="item._id" :album-info="item" />
+      <div class="top-artist-list mb-30">
+        <div class="mb-20 flex justify-between items-center">
+          <Title> Top Artists </Title>
+          <div>
+            <nuxt-link to="/artists" class="text-white">
+              See All
+              <i class="fa-solid fa-chevron-right ml-10 text-12"></i>
+            </nuxt-link>
+          </div>
+        </div>
+        <div class="grid xl:grid-cols-3 sm:grid-cols-2 gap-x-20 gap-y-20">
+          <Artist
+            v-for="item in artistItems"
+            :key="item._id"
+            :ArtistInfo="item"
+          />
+        </div>
       </div>
     </Container>
   </div>
@@ -27,105 +68,52 @@ import { Vue, Component } from 'nuxt-property-decorator'
 import { Album } from '~/Model/album.model'
 import { Artist } from '~/Model/artist.model'
 import { PlayList } from '~/Model/playlist.model'
+import { IArtistService } from '~/services/IArtistService'
 import { container } from '~/services/Ioc/inversify.config'
 import { SYMBOLS } from '~/services/Ioc/SYMBOLS'
 import { IPlayListService } from '~/services/IPlayListService'
-// import { PlayList } from '~/Model/playlist.model'
+import qs from 'querystring'
+import { IAlbumService } from '~/services/IAlbumService'
 @Component({
   layout: 'main',
-  asyncData() {
+  async asyncData() {
     try {
       const playlistService = container.get<IPlayListService>(
         SYMBOLS.IPlayListService
-      );
-      console.log(playlistService);
+      )
+      const artistService = container.get<IArtistService>(
+        SYMBOLS.IArtistService
+      )
+      const albumService = container.get<IAlbumService>(SYMBOLS.IAlbumService);
+      const getPlayLists = await playlistService.getPlaylists({
+        limit: 6,
+        skip: 1,
+        Followers: 1,
+      })
+      const getArtists = await artistService.getArtists({
+        limit: 12,
+        skip: 1,
+      })
+      const getAlbums = await albumService.getAlbums()
+      return {
+        playlistsItems: getPlayLists,
+        artistItems: getArtists,
+        albumsItems:getAlbums.items
+      }
     } catch (error) {
       console.log(error)
     }
   },
 })
 export default class HomePage extends Vue {
-  playlistsItems: PlayList[] = [
-    {
-      _id: '1',
-      name: 'POP',
-      imgUrl: 'https://cdnmrtehran.ir/media/artists/5bf5d6fd91c2c.jpg',
-      Followers: 30,
-      coverImgUrl: '',
-    },
-  ]
-
-  artistItems: Artist[] = [
-    {
-      _id: '1',
-      name: 'Mohsen Chavoshi',
-      imgUrl: 'https://cdnmrtehran.ir/media/artists/5e25a371ccbdb.jpg',
-      coverImgUrl: 'https://cdnmrtehran.ir/media/artists/5e25a371ccbdb.jpg',
-      Followers: 20,
-    },
-  ]
-
-  albumsItems: Album[] = [
-    {
-      _id: '1',
-      name: 'Amir Bi Gazand',
-      imgUrl:
-        'https://cdnmrtehran.ir/media/mp3s/Mohsen_Chavoshi/Albums/Harmless_Ruler/amire_bi_gazand_thumb_mrtehran.jpg',
-      artists: [
-        {
-          _id: '2',
-          name: 'Mohsen Chavoshi',
-          imgUrl: 'https://cdnmrtehran.ir/media/artists/5bf6ce135d735.jpg',
-          coverImgUrl: 'https://cdnmrtehran.ir/media/artists/5bf6ce135d735.jpg',
-          Followers: 23,
-        },
-      ],
-    },
-    {
-      _id: '2',
-      name: 'Amir Bi Gazand',
-      imgUrl:
-        'https://cdnmrtehran.ir/media/mp3s/Mohsen_Chavoshi/Albums/Harmless_Ruler/amire_bi_gazand_thumb_mrtehran.jpg',
-      artists: [
-        {
-          _id: '2',
-          name: 'Mohsen Chavoshi',
-          imgUrl: 'https://cdnmrtehran.ir/media/artists/5bf6ce135d735.jpg',
-          coverImgUrl: 'https://cdnmrtehran.ir/media/artists/5bf6ce135d735.jpg',
-          Followers: 23,
-        },
-      ],
-    },
-    {
-      _id: '3',
-      name: 'Amir Bi Gazand',
-      imgUrl:
-        'https://cdnmrtehran.ir/media/mp3s/Mohsen_Chavoshi/Albums/Harmless_Ruler/amire_bi_gazand_thumb_mrtehran.jpg',
-      artists: [
-        {
-          _id: '2',
-          name: 'Mohsen Chavoshi',
-          imgUrl: 'https://cdnmrtehran.ir/media/artists/5bf6ce135d735.jpg',
-          coverImgUrl: 'https://cdnmrtehran.ir/media/artists/5bf6ce135d735.jpg',
-          Followers: 23,
-        },
-      ],
-    },
-    {
-      _id: '4',
-      name: 'Amir Bi Gazand',
-      imgUrl:
-        'https://cdnmrtehran.ir/media/mp3s/Mohsen_Chavoshi/Albums/Harmless_Ruler/amire_bi_gazand_thumb_mrtehran.jpg',
-      artists: [
-        {
-          _id: '2',
-          name: 'Mohsen Chavoshi',
-          imgUrl: 'https://cdnmrtehran.ir/media/artists/5bf6ce135d735.jpg',
-          coverImgUrl: 'https://cdnmrtehran.ir/media/artists/5bf6ce135d735.jpg',
-          Followers: 23,
-        },
-      ],
-    },
-  ]
+  playlistsItems: PlayList[] = []
+  artistItems: Artist[] = []
+  albumsItems: Album[] = []
 }
 </script>
+<style lang="scss">
+.home-page {
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+</style>
