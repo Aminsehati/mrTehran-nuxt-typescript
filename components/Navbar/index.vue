@@ -3,7 +3,7 @@
     <div class="container-sm">
       <ul class="list_navbar flex align-center">
         <li v-for="navbar in navbarItems" :key="navbar.id" class="navbar_item">
-          <nuxt-link :to="navbar.path" :class="['text-13 text-light text-400']">
+          <nuxt-link :to="navbar.path" :class="['text-13 text-light text-400']" exact-active-class="active">
             <!-- <IconBrowse
               v-if="navbar.name === 'Browse'"
               width="15"

@@ -1,0 +1,56 @@
+.cover-artist {
+    position: relative;
+    min-height: 45vh;
+    margin-bottom: 60px;
+    .wrapper {
+      position: relative;
+      min-height: 45vh;
+      border-radius: 0.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding-bottom: 15px;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.07);
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          0deg,
+          #202020 0%,
+          rgba(0, 0, 0, 0) 100%
+        ) !important;
+        z-index: -1;
+      }
+      .wrapper-content {
+        width: 100%;
+        color: #fff;
+      }
+      .btn-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 10px;
+        row-gap: 15px;
+        flex-wrap: wrap;
+        .btn_item {
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          padding: 0.34rem 1.9rem;
+          border-radius: 50rem;
+          font-size: 13px;
+          transition: all 400ms ease;
+          &:hover {
+            background: #fff;
+            color: #202020;
+            transition: all 400ms ease;
+          }
+        }
+      }
+    }
+  }

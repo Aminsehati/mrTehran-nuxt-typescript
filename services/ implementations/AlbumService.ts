@@ -1,7 +1,7 @@
 import { injectable } from "inversify";
+import { IAlbumService } from "../IAlbumService";
 import { Album } from "~/Model/album.model";
 import { $axios } from "~/utils/api";
-import { IAlbumService } from "../IAlbumService";
 @injectable()
 export class AlbumService implements IAlbumService {
     async getAlbums():Promise<Album[]>{

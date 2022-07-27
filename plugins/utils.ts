@@ -17,6 +17,10 @@ export class UtilsPlugin {
     getImageUrl(url: string) {
         return `${this.baseUrl}public/images/${url}`
     }
+
+    getAudioUrl(url: string) {
+        return `${this.baseUrl}public/audio/${url}`
+    }
 }
 
 const plugin: Plugin = function (_ctx: Context, inject: Inject) {

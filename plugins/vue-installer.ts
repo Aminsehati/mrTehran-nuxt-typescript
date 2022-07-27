@@ -1,3 +1,4 @@
 import Vue from 'vue'
-import Pagination from 'vuejs-paginate';
-Vue.component('paginate',Pagination)
+const Pagination  = require('vuejs-paginate')
+// eslint-disable-next-line vue/multi-word-component-names
+Vue.component('Paginate',Pagination)

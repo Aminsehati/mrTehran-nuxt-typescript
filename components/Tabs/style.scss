@@ -1,0 +1,38 @@
+.tabs_wrapper {
+    display: flex;
+    column-gap: 5px;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    margin-bottom: 30px;
+    .tabs-item {
+      flex: 1 1 0;
+      text-align: center;
+      a {
+        background: rgba(255, 255, 255, 0.07);
+        width: 100%;
+        display: block;
+        padding: 12px 0;
+        transition: all 400ms ease-in-out;
+        color: rgba(255, 255, 255, 0.5);
+        &.active {
+          color: #fff;
+          background: rgba(255, 255, 255, 0.1);
+        }
+      }
+      &:last-child {
+        a {
+          border-radius: 0 0.5rem 0.5rem 0;
+        }
+      }
+      &:first-child {
+        a {
+          border-radius: 0.5rem 0 0 0.5rem;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .tabs_wrapper {
+      flex-direction: column;
+    }
+  }

@@ -10,8 +10,8 @@
       :show="showSidebarSearch"
       @close="showSidebarSearch = !showSidebarSearch"
     />
-    <!-- <Player @showList="showSidebarPlayerLists = !showSidebarPlayerLists" />
-    <PlayerLists
+     <Player @showList="showSidebarPlayerLists = !showSidebarPlayerLists" />
+    <!-- <PlayerLists
       :show="showSidebarPlayerLists"
       @close="showSidebarPlayerLists = !showSidebarPlayerLists"
     /> -->

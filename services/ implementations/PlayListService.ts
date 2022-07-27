@@ -1,9 +1,9 @@
+import qs from 'querystring'
 import { injectable } from 'inversify'
 import { IPlayListService } from '../IPlayListService'
 import { PlayList } from '~/Model/playlist.model'
 import { PlayListInput } from '~/Model/dto/playlistInput.model'
 import { $axios } from '~/utils/api'
-import qs from 'querystring'
 @injectable()
 export class PlayListService implements IPlayListService {
 
@@ -13,9 +13,9 @@ export class PlayListService implements IPlayListService {
                 ...data
             });
             const res: any = await $axios.$get<PlayList[]>(`/PlayList/?${query}`,);
-            return res.data.items
+            return res.data
         } catch (error) {
-            return error as any
+            return Promise.reject(error)
         }
     }
 
@@ -25,7 +25,7 @@ export class PlayListService implements IPlayListService {
                 `/PlayList/${id}`)
             return res
         } catch (error) {
-            throw new Error(error as any)
+            return Promise.reject(error)
         }
     }
 }

@@ -1,0 +1,32 @@
+.pagination_wrapper {
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      li {
+        &.disabled {
+          display: none;
+        }
+        &:last-child {
+          display: none;
+        }
+        &:first-child {
+          &:not(.active) {
+            display: none;
+          }
+        }
+        a {
+          background: rgba(255, 255, 255, 0.07);
+          color: rgba(255, 255, 255, 0.5);
+          padding: 0.5rem 0.75rem;
+          line-height: 1.25;
+        }
+        &.active {
+          a {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+          }
+        }
+      }
+    }
+  }

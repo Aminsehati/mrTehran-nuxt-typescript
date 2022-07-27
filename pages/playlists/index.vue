@@ -6,9 +6,14 @@
         <PlayList
           v-for="item in listPlaylists"
           :key="item._id"
-          :playListInfo="item"
+          :play-list-info="item"
         />
       </div>
+      <Pagination
+        :tottal-count="tottalCount"
+        :limit="limit"
+        @onChange="chnageSkip"
+      />
     </Container>
   </div>
 </template>
@@ -23,24 +28,50 @@ import { IPlayListService } from '~/services/IPlayListService'
 @Component({
   layout: 'main',
   head: {
-    title: 'Playlists | MrTehran.com',
+    title: 'Playlists | MrTehran.com'
   },
   async asyncData(ctx: Context) {
     try {
       const playlistsService = container.get<IPlayListService>(
         SYMBOLS.IPlayListService
       )
-      const getPlaylists = await playlistsService.getPlaylists({ limit: 25, skip: 1 })
+      const getPlaylists: any = await playlistsService.getPlaylists({
+        limit: 1,
+        skip: 1
+      });
       return {
-        listPlaylists:getPlaylists
+        listPlaylists: getPlaylists.items,
+        tottalCount: getPlaylists.tottalCount
       }
     } catch (error) {
       ctx.error({ statusCode: 500 })
     }
-  },
+  }
 })
 export default class PlaylistsPage extends Vue {
   listPlaylists: PlayList[] = []
+  limit: number = 2
+  skip: number = 1
+  tottalCount: number = 0
+  async getPlaylists() {
+    try {
+      const playlistsService = container.get<IPlayListService>(
+        SYMBOLS.IPlayListService
+      )
+      const getPlaylists:any = await playlistsService.getPlaylists({
+        limit: this.limit,
+        skip: this.skip
+      })
+      this.listPlaylists = getPlaylists.items
+    } catch (error) {
+      return this.$nuxt.error({ statusCode: 500 })
+    }
+  }
+
+  async chnageSkip(skip: number) {
+    this.skip = skip;
+    await this.getPlaylists()
+  }
 }
 </script>
 <style lang="scss">

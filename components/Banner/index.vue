@@ -10,6 +10,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
+import './style.scss'
 @Component({})
 export default class BannerComponent extends Vue {
   imageCover = require('@/assets/image/apppromotebg.jpeg')
