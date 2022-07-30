@@ -1,7 +1,7 @@
 <template>
   <div class="browse-page">
     <Container>
-      <Tabs />
+      <Tabs :tabs="tabs" />
       <div class="title mb-20 flex align-center justify-between">
         <Title> Featured </Title>
         <div>
@@ -34,6 +34,8 @@ import { Track } from '~/Model/track.model'
 import { container } from '~/services/Ioc/inversify.config'
 import { SYMBOLS } from '~/services/Ioc/SYMBOLS'
 import { ITrackService } from '~/services/ITrackService'
+import { Tab } from '~/Model/tab.model'
+import items from './items'
 @Component({
   layout: 'main',
   async asyncData(ctx: Context) {
@@ -41,28 +43,30 @@ import { ITrackService } from '~/services/ITrackService'
       const trackService = container.get<ITrackService>(SYMBOLS.ITrackervice)
       const getTracks: any = await trackService.getTracks({
         limit: 3,
-        skip: 1
+        skip: 1,
       })
+      console.log('getTracks', getTracks)
       return {
         listTracks: getTracks.items,
-        tottalCount: getTracks.tottalCount
+        tottalCount: getTracks.tottalCount,
       }
     } catch (error) {
       ctx.error({ statusCode: 500 })
     }
-  }
+  },
 })
 export default class BrowsePage extends Vue {
   listTracks: Track[] = []
   limit: number = 3
   skip: number = 1
   tottalCount: number = 0
+  tabs: Tab[] = items
   public async getTracks() {
     try {
       const trackService = container.get<ITrackService>(SYMBOLS.ITrackervice)
       const getTracks: any = await trackService.getTracks({
         limit: this.limit,
-        skip: this.skip
+        skip: this.skip,
       })
       this.listTracks = getTracks.items
     } catch (error) {
@@ -77,7 +81,7 @@ export default class BrowsePage extends Vue {
 
   head() {
     return {
-      title: `Featured and Top Songs | Page ${this.skip} | MrTehran.com`
+      title: `Featured and Top Songs | Page ${this.skip} | MrTehran.com`,
     }
   }
 }

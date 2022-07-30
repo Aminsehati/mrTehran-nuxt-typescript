@@ -7,6 +7,7 @@ export class Track {
     readonly trackName!: string;
     readonly view!: number;
     readonly like!: number;
+    readonly createdAt!:string
     artists!: Artist[]
     playlists!: PlayList[]
 }

@@ -116,7 +116,7 @@ export default <NuxtConfig>{
   components: [
     {
       path: "~/components",
-      pathPrefix: false,
+      pathPrefix: true,
     },
   ],
   buildModules: [

@@ -1,7 +1,7 @@
 <template>
   <div class="browse-latest-page">
     <Container>
-      <Tabs />
+      <Tabs :tabs="tabs"/>
       <div class="title mb-20 flex align-center justify-between">
         <Title> LATEST </Title>
         <div>
@@ -30,10 +30,12 @@
 <script lang="ts">
 import { Context } from '@nuxt/types'
 import { Vue, Component } from 'nuxt-property-decorator'
+import { Tab } from '~/Model/tab.model'
 import { Track } from '~/Model/track.model'
 import { container } from '~/services/Ioc/inversify.config'
 import { SYMBOLS } from '~/services/Ioc/SYMBOLS'
 import { ITrackService } from '~/services/ITrackService'
+import items from '../items'
 @Component({
   layout: 'main',
   async asyncData(_ctx: Context) {
@@ -41,28 +43,31 @@ import { ITrackService } from '~/services/ITrackService'
       const _TrackService = container.get<ITrackService>(SYMBOLS.ITrackervice)
       const getTracks: any = await _TrackService.getTracks({
         limit: 3,
-        skip: 1
+        skip: 1,
+        createdAt: -1,
       })
       return {
         listTracks: getTracks.items,
-        tottalCount: getTracks.tottalCount
+        tottalCount: getTracks.tottalCount,
       }
     } catch (error) {
       _ctx.error({ statusCode: 500 })
     }
-  }
+  },
 })
 export default class BrowseLatest extends Vue {
   tottalCount: number = 0
   limit: number = 3
   skip: number = 1
   listTracks: Track[] = []
+  tabs: Tab[] = items
   async getTracks() {
     try {
       const _TrackService = container.get<ITrackService>(SYMBOLS.ITrackervice)
       const getTracks: any = await _TrackService.getTracks({
         limit: this.limit,
-        skip: this.skip
+        skip: this.skip,
+        createdAt: -1,
       })
       this.listTracks = getTracks.items
     } catch (error) {}
@@ -75,7 +80,7 @@ export default class BrowseLatest extends Vue {
 
   head() {
     return {
-      title: `Latest Songs | Page ${this.skip} | MrTehran.com`
+      title: `Latest Songs | Page ${this.skip} | MrTehran.com`,
     }
   }
 }

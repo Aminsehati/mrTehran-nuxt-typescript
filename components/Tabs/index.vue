@@ -12,37 +12,39 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
+import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Tab } from '~/Model/tab.model'
 
 import './style.scss'
 @Component({})
 export default class TabsComponents extends Vue {
-  tabs = [
-    {
-      id: 1,
-      name: 'Featured',
-      path: '/browse'
-    },
-    {
-      id: 2,
-      name: 'Popular',
-      path: '/browse/Popular'
-    },
-    {
-      id: 3,
-      name: 'Latest',
-      path: '/browse/latest'
-    },
-    {
-      id: 4,
-      name: 'Podcasts',
-      path: '/browse/podcasts'
-    },
-    {
-      id: 5,
-      name: 'Travel',
-      path: '/browse/travel'
-    }
-  ]
+  @Prop() tabs!: Tab[]
+  // tabs = [
+  //   {
+  //     id: 1,
+  //     name: 'Featured',
+  //     path: '/browse',
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Popular',
+  //     path: '/browse/Popular',
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'Latest',
+  //     path: '/browse/latest',
+  //   },
+  //   {
+  //     id: 4,
+  //     name: 'Podcasts',
+  //     path: '/browse/podcasts',
+  //   },
+  //   {
+  //     id: 5,
+  //     name: 'Travel',
+  //     path: '/browse/travel',
+  //   },
+  // ]
 }
 </script>

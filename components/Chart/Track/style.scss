@@ -1,0 +1,59 @@
+.track-chart {
+    background: rgba(255, 255, 255, 0.07) !important;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    .track-image {
+        width: 70px;
+        height: 70px;
+        overflow: hidden;
+        flex-shrink: 0;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.5rem 0 0 0.5rem;
+        }
+    }
+    .track-name {
+        margin-bottom: 3px;
+        a {
+            &:hover {
+                color: rgba(255, 255, 255, 0.5);
+            }
+        }
+    }
+    .date-track,
+    .count-likes,
+    .count-view {
+        width: 25%;
+        display: inline-block;
+    }
+    .play-track,
+    .pause-track {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.07);
+        color: rgba(255, 255, 255, 0.5);
+        flex-shrink: 0;
+        border-radius: 50%;
+        cursor: pointer;
+        &.play-track-active {
+            background: #fff;
+            color: #202020;
+        }
+        i {
+            font-size: 12px;
+        }
+    }
+}
+@media screen and (max-width: 992px) {
+    .track-chart .date-track,
+    .track-chart .count-likes,
+    .track-chart .count-view {
+        display: none;
+    }
+}

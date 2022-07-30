@@ -31,7 +31,7 @@
           'play-track-icon',
           { 'play-track-active': ActivePlayerItem.idPlayer === trackInfo._id }
         ]"
-        @click="pauseTrack(trackInfo)"
+        @click="pauseTrack"
       >
         <i class="fa-solid fa-pause"></i>
       </span>

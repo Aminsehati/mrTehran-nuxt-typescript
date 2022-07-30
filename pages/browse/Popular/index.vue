@@ -1,7 +1,7 @@
 <template>
   <div class="browse-popular-page">
     <Container>
-      <Tabs />
+      <Tabs :tabs="tabs"/>
       <div class="title mb-20 flex align-center justify-between">
         <Title> Popular </Title>
         <div>
@@ -30,10 +30,12 @@
 <script lang="ts">
 import { Context } from '@nuxt/types'
 import { Vue, Component } from 'nuxt-property-decorator'
+import { Tab } from '~/Model/tab.model'
 import { Track } from '~/Model/track.model'
 import { container } from '~/services/Ioc/inversify.config'
 import { SYMBOLS } from '~/services/Ioc/SYMBOLS'
 import { ITrackService } from '~/services/ITrackService'
+import items from '../items'
 @Component({
   layout: 'main',
   async asyncData(_ctx: Context) {
@@ -58,6 +60,7 @@ export default class BrowsePopularPage extends Vue {
   tottalCount: number = 0
   limit: number = 3
   skip: number = 1
+  tabs:Tab[] = items
   async getTracks() {
     try {
       const _TrackService = container.get<ITrackService>(SYMBOLS.ITrackervice)

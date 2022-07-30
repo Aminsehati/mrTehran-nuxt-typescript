@@ -4,31 +4,6 @@
       <ul class="list_navbar flex align-center">
         <li v-for="navbar in navbarItems" :key="navbar.id" class="navbar_item">
           <nuxt-link :to="navbar.path" :class="['text-13 text-light text-400']" exact-active-class="active">
-            <!-- <IconBrowse
-              v-if="navbar.name === 'Browse'"
-              width="15"
-              height="15"
-              class="mr-10"
-            />
-            <IconHome
-              v-if="navbar.name === 'Home'"
-              width="15"
-              height="15"
-              class="mr-10"
-            />
-            <IconArtist
-              v-if="navbar.name === 'Artists'"
-              width="18"
-              height="18"
-              class="mr-10"
-            />
-            <IconPlayList
-              v-if="navbar.name === 'Playlists'"
-              width="15"
-              height="15"
-              class="mr-10"
-            /> -->
-
             <span>
               {{ navbar.name }}
             </span>

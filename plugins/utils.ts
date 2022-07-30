@@ -1,6 +1,7 @@
 import { Context, Plugin } from '@nuxt/types'
 import { Inject } from '@nuxt/types/app'
 import _ from 'lodash'
+import moment from 'jalali-moment'
 export class UtilsPlugin {
     public $_: _.LoDashStatic = _
     public baseUrl: string = "http://localhost:5000/"
@@ -20,6 +21,15 @@ export class UtilsPlugin {
 
     getAudioUrl(url: string) {
         return `${this.baseUrl}public/audio/${url}`
+    }
+    convertDateToMiladi(date:string){
+        return moment(date).format("YYYY-MM-DD")
+    }
+    numberTrack(number:number){
+        if(number >0 && number <=9 ){
+            return `0${number}`
+        }
+        return `${number}`
     }
 }
 
